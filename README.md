@@ -2,13 +2,13 @@ source ~/emsdk/emsdk_env.sh
 
 ^ Or wherever you have it.
 
-git clone https://github.com/ford442/SDL2.git -b optimize
+git clone https://github.com/ford442/SDL2.git 
 
 cd SDL2
 
 cd test
 
-emcc loopwave.c -o sdl2-wav.js -s ENVIRONMENT=web -s INITIAL_MEMORY=1400mb -s ALLOW_MEMORY_GROWTH=0 -s MALLOC="emmalloc" -s FORCE_FILESYSTEM=1  -O3 -s USE_SDL=2 -s EXPORTED_FUNCTIONS='["_pl"]' -s EXTRA_EXPORTED_RUNTIME_METHODS='["ccall"]' --closure 1 -g2 -flto -s SUPPORT_LONGJMP=0
+emcc wav.c -o sdl2.js -O3 -sENVIRONMENT=web -sINITIAL_MEMORY=1400mb -sALLOW_MEMORY_GROWTH=0 -s MALLOC="emmalloc" -sFORCE_FILESYSTEM=1 -sEXPORTED_FUNCTIONS='["_main","_pl"]' -sEXPORTED_RUNTIME_METHODS='["ccall"]' --closure 1 -g0 -flto=full -sSUPPORT_LONGJMP=0 --pre-js filesys.js --extern-post-js ccall.js -sUSE_SDL=2 
 
 
 
