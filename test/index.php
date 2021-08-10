@@ -1,12 +1,10 @@
 <head>
 <meta name="theme-color" content="#000000"/>
-<link rel="preconnect" href="https://js.1ink.us">
-<link rel="preconnect" href="https://css.1ink.us">
-<link rel="preconnect" href="https://wasm.noahcohn.com">
+
 <title>1ink.us SDL</title>
 </head>
 <body>
-<script type="text/javascript" id="thescript" charset="utf-8" async src="https://wasm.noahcohn.com/sdl2.16.cl.js"></script>
+<script type="text/javascript" id="thescript" charset="utf-8" async src="./sdl2.js"></script>
 <div id="ihig" hidden></div>
 <div id="di" hidden></div>
 <div id="iwid" hidden></div>
