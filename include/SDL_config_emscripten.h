@@ -157,8 +157,8 @@
 #define SDL_TIMER_UNIX 1
 
 /* Enable various video drivers */
-#define SDL_VIDEO_DRIVER_EMSCRIPTEN 1
-#define SDL_VIDEO_RENDER_OGL_ES2 1
+#define SDL_VIDEO_DRIVER_EMSCRIPTEN 0
+#define SDL_VIDEO_RENDER_OGL_ES2 0
 
 /* Enable OpenGL support */
 /* #undef SDL_VIDEO_OPENGL */
