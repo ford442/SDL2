@@ -1,3 +1,5 @@
+#include "../include/SDL.h"
+#include "../include/SDL_config.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <emscripten/emscripten.h>
@@ -11,12 +13,12 @@ void SDLCALL bfr(void *unused,Uint8 *stm,int len){Uint8 *wptr;int lft;wptr=wave.
 while (lft <= len){SDL_memcpy(stm,wptr,lft);stm+=lft;len-=lft;wptr=wave.snd;lft=wave.slen;wave.pos=0;}
 SDL_memcpy(stm,wptr,len);wave.pos+=len;}
 static int done=0;
-void lp(){if(done || (SDL_GetAudioDeviceStatus(dev) != SDL_AUDIO_PLAYING))emscripten_cancel_main_lp();}
-int main(){return (0);}
-void pl(){int i;char flnm[4096];cls_aud();SDL_FreeWAV(wave.snd);wave.pos=0;emscripten_cancel_main_lp();
+void lp(){if(done || (SDL_GetAudioDeviceStatus(dev) != SDL_AUDIO_PLAYING))emscripten_cancel_main_loop();}
+void pl(){int i;char flnm[4096];cls_aud();SDL_FreeWAV(wave.snd);wave.pos=0;emscripten_cancel_main_loop();
 if(SDL_Init(SDL_INIT_AUDIO | SDL_INIT_EVENTS) < 0){qu (1);}
 SDL_strlcpy(flnm,"/sample.wav",sizeof(flnm));
 if(SDL_LoadWAV(flnm,&wave.spec,&wave.snd,&wave.slen) == NULL){qu(1);}
 wave.spec.callback=bfr;opn_aud();
 SDL_FlushEvents(SDL_AUDIODEVICEADDED,SDL_AUDIODEVICEREMOVED);
-emscripten_set_main_lp(lp,1,0);}
+emscripten_set_main_loop(lp,1,0);}
+int main(){return (0);}
