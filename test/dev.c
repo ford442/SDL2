@@ -5,7 +5,7 @@
 #include <emscripten/emscripten.h>
 static struct{SDL_AudioSpec spec;Uint8 *snd;Uint32 slen;int pos;}wave;
 static SDL_AudioDeviceID dev;
-static void cls_aud(){
+static void cls_aud() {
 if(dev!=0){
 SDL_PauseAudioDevice(dev,SDL_TRUE);
 SDL_CloseAudioDevice(dev);
