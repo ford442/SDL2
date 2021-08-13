@@ -3,7 +3,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<emscripten/emscripten.h>
-register struct{SDL_AudioSpec spec;Uint8 *snd;Uint32 slen;int pos;}wave;
+static struct{SDL_AudioSpec spec;Uint8 *snd;Uint32 slen;int pos;}wave;
 static SDL_AudioDeviceID dev;
 static void cls_aud(){if(dev!=0){SDL_CloseAudioDevice(dev);dev=0;}}
 static void qu(int rc){cls_aud();SDL_FreeWAV(wave.snd);SDL_Quit();exit(rc);}
@@ -14,7 +14,7 @@ while(lft<=len){SDL_memcpy(stm,wptr,lft);stm+=lft;len-=lft;wptr=wave.snd;lft=wav
 SDL_memcpy(stm,wptr,len);wave.pos+=len;}
 static int done=0;
 void lp(){if(done||(SDL_GetAudioDeviceStatus(dev)!=SDL_AUDIO_PLAYING))emscripten_cancel_main_loop();}
-void pl(){emscripten_cancel_main_loop();int i;char flnm[4096];cls_aud();SDL_FreeWAV(wave.snd);wave.pos=0;
+void pl(){emscripten_cancel_main_loop();register int i;char flnm[4096];cls_aud();SDL_FreeWAV(wave.snd);wave.pos=0;
 if(SDL_Init(SDL_INIT_AUDIO | SDL_INIT_EVENTS) < 0){qu (1);}
 SDL_strlcpy(flnm,"/sample.wav",sizeof(flnm));
 if(SDL_LoadWAV(flnm,&wave.spec,&wave.snd,&wave.slen)==NULL){qu(1);}
