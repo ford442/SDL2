@@ -1,11 +1,12 @@
-#include "../include/SDL.h"
 #include "../include/SDL_config.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <emscripten/emscripten.h>
-static struct{SDL_AudioSpec spec;Uint8 *snd;Uint32 slen;int pos;} wave;
+#include "../include/SDL.h"
+
+static struct{SDL_AudioSpec spec;Uint8 *snd;Uint32 slen;int pos;}wave;
 static SDL_AudioDeviceID dev;
-static void cls_aud(){if(dev!=0){SDL_PauseAudioDevice(dev, SDL_TRUE);SDL_CloseAudioDevice(dev);dev = 0;}}
+static void cls_aud(){if(dev!=0){SDL_PauseAudioDevice(dev,SDL_TRUE);SDL_CloseAudioDevice(dev);dev=0;}}
 static void qu(register int rc){SDL_Quit();exit(rc);}
 static void opn_aud(){dev=SDL_OpenAudioDevice(NULL,SDL_FALSE,&wave.spec,NULL,0);if(!dev){SDL_FreeWAV(wave.snd);qu(2);}SDL_PauseAudioDevice(dev,SDL_FALSE);}
 static void reopn_aud(){cls_aud();opn_aud();}
@@ -20,4 +21,7 @@ if(SDL_LoadWAV(flnm,&wave.spec,&wave.snd,&wave.slen)==NULL){qu(1);}
 wave.pos=0;
 wave.spec.callback=bfr;opn_aud();
 }
-int main(){return(0);}
+int main(){
+SDL_SetMainReady();
+return(0);
+}
