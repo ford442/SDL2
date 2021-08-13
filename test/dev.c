@@ -1,8 +1,8 @@
-#include "../include/SDL.h"
-#include "../include/SDL_config.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <emscripten/emscripten.h>
+#include"../include/SDL.h"
+#include"../include/SDL_config.h"
+#include<stdio.h>
+#include<stdlib.h>
+#include<emscripten/emscripten.h>
 static struct{SDL_AudioSpec spec;Uint8 *snd;Uint32 slen;int pos;}wave;
 static SDL_AudioDeviceID dev;
 static void cls_aud(){
@@ -10,8 +10,7 @@ if(dev!=0){
 SDL_PauseAudioDevice(dev,SDL_TRUE);
 SDL_CloseAudioDevice(dev);
 dev=0;
-}
-}
+}}
 static void qu(register int rc){
 SDL_Quit();
 exit(rc);
@@ -58,4 +57,4 @@ wave.pos=0;
 wave.spec.callback=bfr;
 opn_aud();
 }
-int main(){return (0);}
+int main(){return(0);}
