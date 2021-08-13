@@ -17,10 +17,10 @@ void lp(){
 // if(done||(SDL_GetAudioDeviceStatus(dev)!=SDL_AUDIO_PLAYING))emscripten_cancel_main_loop();
 }
 void pl(){register int i;char flnm[4096];cls_aud();SDL_FreeWAV(wave.snd);emscripten_cancel_main_loop();SDL_Quit();
-wave.pos=0;
-if(SDL_Init(SDL_INIT_AUDIO|SDL_INIT_EVENTS)<0){return(1);}
+if(SDL_Init(SDL_INIT_AUDIO|SDL_INIT_EVENTS)<0){qu(1);}
 SDL_strlcpy(flnm,"/sample.wav",sizeof(flnm));
 if(SDL_LoadWAV(flnm,&wave.spec,&wave.snd,&wave.slen)==NULL){qu(1);}
+wave.pos=0;
 wave.spec.callback=bfr;opn_aud();
 // SDL_FlushEvents(SDL_AUDIODEVICEADDED,SDL_AUDIODEVICEREMOVED);
 emscripten_set_main_loop(lp,1,0);}
