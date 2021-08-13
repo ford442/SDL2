@@ -1,8 +1,8 @@
-#include"../include/SDL.h"
-#include"../include/SDL_config.h"
-#include<stdio.h>
-#include<stdlib.h>
-#include<emscripten/emscripten.h>
+#include "../include/SDL.h"
+#include "../include/SDL_config.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <emscripten/emscripten.h>
 static struct{SDL_AudioSpec spec;Uint8 *snd;Uint32 slen;int pos;}wave;
 static SDL_AudioDeviceID dev;
 static void cls_aud(){
