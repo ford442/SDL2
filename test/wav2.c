@@ -3,13 +3,13 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<emscripten/emscripten.h>
-static struct{SDL_AudioSpec spec;register Uint8 *snd;Uint32 slen;int pos;}wave;
+register struct{SDL_AudioSpec spec;Uint8 *snd;Uint32 slen;int pos;}wave;
 static SDL_AudioDeviceID dev;
 static void cls_aud(){if(dev!=0){SDL_CloseAudioDevice(dev);dev=0;}}
 static void qu(int rc){cls_aud();SDL_FreeWAV(wave.snd);SDL_Quit();exit(rc);}
 static void opn_aud(){dev=SDL_OpenAudioDevice(NULL,SDL_FALSE,&wave.spec,NULL,0);if(!dev){SDL_FreeWAV(wave.snd);qu(2);}}
 static void reopn_aud(){cls_aud();opn_aud();}
-void SDLCALL bfr(void *unused,register Uint8 *stm,int len){Uint8 *wptr;int lft;wptr=wave.snd+wave.pos;lft=wave.slen-wave.pos;
+void SDLCALL bfr(void *unused,Uint8 *stm,int len){Uint8 *wptr;int lft;wptr=wave.snd+wave.pos;lft=wave.slen-wave.pos;
 while(lft<=len){SDL_memcpy(stm,wptr,lft);stm+=lft;len-=lft;wptr=wave.snd;lft=wave.slen;wave.pos=0;}
 SDL_memcpy(stm,wptr,len);wave.pos+=len;}
 static int done=0;
