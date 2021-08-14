@@ -23,11 +23,6 @@
 #define _SDL_config_emscripten_h_
 #include "SDL_platform.h"
 
-/**
- *  \file SDL_config_emscripten.h
- *
- *  This is a configuration that can be used to build SDL for Emscripten.
- */
 
 #ifdef __LP64__
 #define SIZEOF_VOIDP 8
@@ -138,12 +133,12 @@
 #endif
 
 /* Enable various audio drivers */
-#define SDL_AUDIO_DRIVER_DISK 1
-#define SDL_AUDIO_DRIVER_DUMMY 1
+#define SDL_AUDIO_DRIVER_DISK 0
+#define SDL_AUDIO_DRIVER_DUMMY 0
 #define SDL_AUDIO_DRIVER_EMSCRIPTEN 1
 
 /* Enable various input drivers */
-#define SDL_JOYSTICK_EMSCRIPTEN 1
+#define SDL_JOYSTICK_EMSCRIPTEN 0
 
 /* Enable various shared object loading systems */
 #define SDL_LOADSO_DLOPEN 1
@@ -154,7 +149,7 @@
 #endif
 
 /* Enable various timer systems */
-#define SDL_TIMER_UNIX 1
+#define SDL_TIMER_UNIX 0
 
 /* Enable various video drivers */
 #define SDL_VIDEO_DRIVER_EMSCRIPTEN 0
@@ -163,17 +158,17 @@
 /* Enable OpenGL support */
 /* #undef SDL_VIDEO_OPENGL */
 /* #undef SDL_VIDEO_OPENGL_ES */
-#define SDL_VIDEO_OPENGL_ES2 1
+#define SDL_VIDEO_OPENGL_ES2 0
 /* #undef SDL_VIDEO_OPENGL_BGL */
 /* #undef SDL_VIDEO_OPENGL_CGL */
-#define SDL_VIDEO_OPENGL_EGL 1
+#define SDL_VIDEO_OPENGL_EGL 0
 /* #undef SDL_VIDEO_OPENGL_GLX */
 /* #undef SDL_VIDEO_OPENGL_WGL */
 /* #undef SDL_VIDEO_OPENGL_OSMESA */
 /* #undef SDL_VIDEO_OPENGL_OSMESA_DYNAMIC */
 
 /* Enable system power support */
-#define SDL_POWER_EMSCRIPTEN 1
+#define SDL_POWER_EMSCRIPTEN 0
 
 /* Enable system filesystem support */
 #define SDL_FILESYSTEM_EMSCRIPTEN 1
